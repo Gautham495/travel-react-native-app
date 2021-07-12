@@ -7,12 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const Login = () => {
-  return (
-    <View>
-      <Text>Hsakads</Text>
-    </View>
-  );
+const HeaderBar = () => {
+  return <View></View>;
 };
 
-export default Login;
+export default HeaderBar;

@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
   } from 'react-native';
   
-const ProfileInfo = () => {
+const PreferredActivities = () => {
     return (
         <View>
             
@@ -15,4 +15,4 @@ const ProfileInfo = () => {
     )
 }
 
-export default ProfileInfo
+export default PreferredActivities
