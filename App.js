@@ -5,6 +5,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider as PaperProvider} from 'react-native-paper';
+import FriendIcon from './Assets/friendsIcon.svg';
+import ProfileIcon from './Assets/profileIcon.svg';
 
 import Login from './Components/Login/Login';
 import Destination from './Components/OnBoarding/Destination';
@@ -25,7 +27,8 @@ function PrimaryStack() {
   return (
     // <Provider store={store}>
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Login" component={Login}
+      options={{headerShown:false}} />
       <Stack.Screen name="Destination" component={Destination} />
 
       <Stack.Screen name="PersonalInterest" component={PersonalInterest} />
@@ -33,11 +36,12 @@ function PrimaryStack() {
         name="PreferredActivities"
         component={PreferredActivities}
       />
-      <Stack.Screen name="ProfileInfo" component={ProfileInfo} />
+      <Stack.Screen name="ProfileInfo" component={ProfileInfo} 
+      options={{headerShown:false}}/>
       <Stack.Screen name="SearchDestination" component={SearchDestination} />
-      <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="TopTravels" component={TopTravels} />
-      <Stack.Screen name="TripCarousel" component={TripCarousel} />
+      <Stack.Screen name="TripCarousel" component={TripCarousel}
+       options={{headerShown:false}} />
       <Stack.Screen name="TripDetails" component={TripDetails} />
     </Stack.Navigator>
   );
@@ -61,50 +65,13 @@ const BottomTabNavigator = () => {
         name="Plan"
         component={PrimaryStack}
       />
+
       <Tab.Screen
         options={{
-          tabBarIcon: () => (
-            <Image
-              source={require('./Assets/friendsIcon.svg')}
-              style={{
-                width: 30,
-                height: 30,
-              }}
-            />
-          ),
-        }}
-        name="Friends"
-        component={PrimaryStack}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: () => (
-            <Image
-              source={require('./Assets/diamondIcon.svg')}
-              style={{
-                width: 30,
-                height: 30,
-              }}
-            />
-          ),
-        }}
-        name="Top Trips"
-        component={PrimaryStack}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: () => (
-            <Image
-              source={require('./Assets/profileIcon.svg')}
-              style={{
-                width: 30,
-                height: 30,
-              }}
-            />
-          ),
+          tabBarIcon: () => <ProfileIcon width={38} height={38} fill="#000" />,
         }}
         name="Profile"
-        component={PrimaryStack}
+        component={Profile}
       />
     </Tab.Navigator>
   );

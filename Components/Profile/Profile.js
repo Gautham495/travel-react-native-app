@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
   } from 'react-native';
   
-const Profile = () => {
+const Profile = ({navigation}) => {
     return (
         <View>
             

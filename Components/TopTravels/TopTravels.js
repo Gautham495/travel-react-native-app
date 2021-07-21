@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
   } from 'react-native';
   
-const TopTravels = () => {
+const TopTravels = ({navigation}) => {
     return (
         <View>
             

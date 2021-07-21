@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {
     View,
     TextInput,
@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
   } from 'react-native';
   
-const PersonalInterest = () => {
+const PersonalInterest = ({navigation}) => {
     return (
         <View>
             
