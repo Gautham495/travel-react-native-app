@@ -30,7 +30,7 @@ const ProfileInfo = ({navigation}) => {
     setStartDate(selectedDate.toLocaleDateString());
     setDate(selectedDate);
 
-    setShow(Platform.OS === 'ios');
+    setShow(false);
   };
 
  

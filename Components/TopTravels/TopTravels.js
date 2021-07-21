@@ -1,18 +1,57 @@
-import React from 'react'
+import React, {useState, useEffect, useRef} from 'react';
 import {
-    View,
-    TextInput,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-  } from 'react-native';
-  
-const TopTravels = ({navigation}) => {
-    return (
-        <View>
-            
-        </View>
-    )
-}
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  Button,
+  Image,
+  ScrollView,
+} from 'react-native';
+import {getShadow} from '../../utils/Shadow.js';
+import firestore from '@react-native-firebase/firestore';
 
-export default TopTravels
+const TopTravels = ({navigation}) => {
+  const [topTripsData, setTopTripsData] = useState([]);
+
+  const getTopTripsData = async () => {
+    const topTrips = await firestore().collection('toptrips').get();
+    console.log(topTrips.docs.map(item => item.data()));
+
+    setTopTripsData(topTrips.docs.map(item => item.data()));
+  };
+
+  useEffect(() => {
+    getTopTripsData();
+  }, []);
+
+  return (
+    <ScrollView>
+      {topTripsData ? (
+        <View style={{margin: 10}}>
+          {topTripsData.map(item => (
+            <TouchableOpacity
+            onPress={()=>navigation.navigate('TripDetails')}
+              key={Math.random()}
+              style={{
+                borderRadius: 1,
+                ...getShadow(1),
+                margin: 10,
+                padding: 10,
+                alignItems:'center'
+              }}>
+              <Text>{item.location}</Text>
+              <Text>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      ) : (
+        <Text>Loading</Text>
+      )}
+    </ScrollView>
+  );
+};
+const styles = StyleSheet.create({});
+export default TopTravels;

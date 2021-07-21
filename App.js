@@ -7,6 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider as PaperProvider} from 'react-native-paper';
 import FriendIcon from './Assets/friendsIcon.svg';
 import ProfileIcon from './Assets/profileIcon.svg';
+import DiamondIcon from './Assets/diamondIcon.svg';
 
 import Login from './Components/Login/Login';
 import Destination from './Components/OnBoarding/Destination';
@@ -27,8 +28,11 @@ function PrimaryStack() {
   return (
     // <Provider store={store}>
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login}
-      options={{headerShown:false}} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Destination" component={Destination} />
 
       <Stack.Screen name="PersonalInterest" component={PersonalInterest} />
@@ -36,13 +40,23 @@ function PrimaryStack() {
         name="PreferredActivities"
         component={PreferredActivities}
       />
-      <Stack.Screen name="ProfileInfo" component={ProfileInfo} 
-      options={{headerShown:false}}/>
+      <Stack.Screen
+        name="ProfileInfo"
+        component={ProfileInfo}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="SearchDestination" component={SearchDestination} />
       <Stack.Screen name="TopTravels" component={TopTravels} />
-      <Stack.Screen name="TripCarousel" component={TripCarousel}
-       options={{headerShown:false}} />
-      <Stack.Screen name="TripDetails" component={TripDetails} />
+      <Stack.Screen
+        name="TripCarousel"
+        component={TripCarousel}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="TripDetails"
+        options={{headerShown: false}}
+        component={TripDetails}
+      />
     </Stack.Navigator>
   );
 }
@@ -66,6 +80,13 @@ const BottomTabNavigator = () => {
         component={PrimaryStack}
       />
 
+      <Tab.Screen
+        options={{
+          tabBarIcon: () => <DiamondIcon width={38} height={38} fill="#000" />,
+        }}
+        name="TopTrips"
+        component={TopTravels}
+      />
       <Tab.Screen
         options={{
           tabBarIcon: () => <ProfileIcon width={38} height={38} fill="#000" />,

@@ -24,12 +24,10 @@ const PreferredActivities = ({navigation}) => {
     // setStartDate(dayjs(selectedDate).format('DD-MM-YYYY'));
     setDate(selectedDate);
     setEndDate(selectedDate.toLocaleDateString());
-    setShow(Platform.OS === 'ios');
   };
   const showMode = currentMode => {
     setShow(true);
 
-    setMode(currentMode);
   };
 
   const showDatepicker = () => {

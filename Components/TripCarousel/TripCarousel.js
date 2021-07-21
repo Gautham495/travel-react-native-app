@@ -7,50 +7,80 @@ import {
   Dimensions,
   TouchableOpacity,
   Button,
-  Image
+  Image,
 } from 'react-native';
 import {getShadow} from '../../utils/Shadow.js';
 import Swiper from 'react-native-deck-swiper';
 import {Card, IconButton, OverlayLabel} from '../Component';
+import firestore from '@react-native-firebase/firestore';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
 const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 10) / 4);
 
-const data = [{name: '1'}, {name: '2'}, {name: '3'}];
-
 const TripCarousel = ({navigation}) => {
+  const [descriptionData, setDescriptionData] = useState([]);
+
+  const [counter, setCounter] = useState(0);
+
+  const getDescriptions = async () => {
+    const description = await firestore().collection('activities').get();
+    console.log(description.docs.map(item => item.data()));
+
+    setDescriptionData(description.docs.map(item => item.data()));
+  };
+
+  useEffect(() => {
+    getDescriptions();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Swiper
-        cards={['Hiking', 'Snowing', 'swimming', 'MAKES', 'YOU', 'HAPPY']}
-        renderCard={card => {
-          return (
+        // cards={['Hiking', 'Snowing', 'swimming', 'MAKES', 'YOU', 'HAPPY']}
+        cards={descriptionData}
+        renderCard={card =>
+          (card && (
             <View style={styles.card}>
               <View>
-               <Image
-              source={require('../../Assets/plane.png')}
-              style={{width:150, height: 150, marginBottom: 20}}
-               />
-               </View>
-               <View>
-               <View>
-                 <Text>{card}</Text>
-               </View>
-               {/* <View>
+                <Image
+                  source={{
+                    uri: card.img,
+                  }}
+                  style={{width: 150, height: 150, marginBottom: 20}}
+                />
+              </View>
+              <View>
+                <View>
+                  <Text>{card.description}</Text>
+                </View>
+                <View>
+                  <Text>{card.location}</Text>
+                </View>
+                <View>
+                  <Text>{card.name}</Text>
+                </View>
+                <View>
+                  <Text>{card.price}</Text>
+                </View>
+                {/* <View>
                  <Text>$150</Text>
                </View> */}
-               </View>
+              </View>
             </View>
-          );
-        }}
+          )) ||
+          null
+        }
         // onSwiped={(cardIndex) => {console.log(cardIndex)}}
-        onSwipedAll={() => {alert('onSwipedAll')}}
+        onSwipedAll={() => {
+          alert('onSwipedAll');
+        }}
         // onSwipedLeft = {(e)=>console.log(e)}
         onSwipedRight={cardIndex => {
-          // i = i+1
-          // console.log(i);
-          navigation.navigate('TripDetails');
+          setCounter(counter + 1);
+          if (counter > 5) {
+            navigation.navigate('TripDetails');
+          }
         }}
         cardIndex={0}
         backgroundColor={'#fff'}
@@ -91,7 +121,7 @@ const styles = StyleSheet.create({
     borderColor: '#E8E8E8',
     justifyContent: 'center',
     backgroundColor: 'white',
-    alignItems:'center'
+    alignItems: 'center',
   },
   text: {
     textAlign: 'center',
@@ -123,18 +153,30 @@ const styles = StyleSheet.create({
 
 export default TripCarousel;
 
+[
+  {
+    url: '',
+    name: '',
+    price: '',
+    details: '',
 
-[{url:'',name:'',price:'',details:'', 
+    data: [
+      {
+        day: 'Monday',
+        timings: [
+          {timing: '1 pm', details: 'Hiking'},
+          {timing: '5pm', details: 'Going To Hotel'},
+        ],
+      },
+      {},
+      {},
+    ],
+  },
 
-data:
- [{day:'Monday',timings:[{timing:'1 pm', details:'Hiking'},
-{timing:'5pm',details:'Going To Hotel'}]},{},{} ] }, 
+  {},
+  {},
+];
 
-
-
-{  }, {}]
-
-users = [{name:'123',destination:'1231'}]
-
-[{url:'',name:'',price:'',details:''}]
-
+users = [{name: '123', destination: '1231'}][
+  {url: '', name: '', price: '', details: ''}
+];
