@@ -34,7 +34,7 @@ const TripDetails = ({navigation}) => {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          console.log(`${doc.id}`);
+          // console.log(`${doc.id}`);
           ids.push(doc.id);
         });
       });
@@ -47,9 +47,9 @@ const TripDetails = ({navigation}) => {
 
     const temp = [];
 
-    for (var i = 0; i < l.length; i++) {
-      console.log(l.map(item => item)[i].map(item => item));
-    }
+    // for (var i = 0; i < l.length; i++) {
+    //   console.log(l.map(item => item)[i].map(item => item));
+    // }
     setTripDetailsData(l);
 
     setTripDetailsData;

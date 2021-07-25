@@ -89,9 +89,9 @@ const TripCarousel = ({navigation}) => {
         // onSwipedLeft = {(e)=>console.log(e)}
         onSwipedRight={cardIndex => {
           setCounter(counter + 1);
-          // if (counter > 1) {
+          if (counter > 4) {
             navigation.navigate('TripDetails');
-          // }
+          }
         }}
         cardIndex={0}
         backgroundColor={'#fff'}
