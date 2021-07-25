@@ -82,9 +82,12 @@ const TripDetails = ({navigation}) => {
           <Text style={{fontSize: 20}}>Your 5 Day Trip Details</Text>
         </View>
         <View style={{marginBottom: 30}}>
-          <Text style={{fontSize: 20}}>03-08-2021 to 9-08-2021</Text>
+          <Text style={{fontSize: 20}}>03-08-2021 to 08-08-2021</Text>
         </View>
         <View>
+          <View style={{marginVertical:10, marginLeft:20}}>
+            <Text style={{fontSize:18}}>Monday</Text>
+          </View>
           <View>
               {data1 &&
                 data1.map(item => (
@@ -94,86 +97,101 @@ const TripDetails = ({navigation}) => {
                       backgroundColor: 'white',
                       padding: 10,
                       margin: 10,
-                      width: 240,
+                      width: 300,
                       borderRadius: 10,
                       ...getShadow(2),
                     }}>
-                    <View>
-                      <Text>{item.activity_name}</Text>
+                      <View>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.activity_name}</Text>
                     </View>
-                    <View>
-                      <Text> $ {item.price}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}> $ {item.price}</Text>
                     </View>
-                    <View>
-                      <Text>{item.time}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.time}</Text>
                     </View>
-                    <View>
-                      <Text>{item.type}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.type}</Text>
                     </View>
+                    </View>
+                   
                   </View>
                 ))}
           </View>
-
+          <View style={{marginVertical:10, marginLeft:20}}>
+            <Text style={{fontSize:18}}>Tuesday</Text>
+          </View>
          
 
           <View>
               {data2 &&
                 data2.map(item => (
                   <View
-                    key={Math.random()}
-                    style={{
-                      backgroundColor: 'white',
-                      padding: 10,
-                      margin: 10,
-                      width: 240,
-                      borderRadius: 10,
-                      ...getShadow(2),
-                    }}>
+                  key={Math.random()}
+                  style={{
+                    backgroundColor: 'white',
+                    padding: 10,
+                    margin: 10,
+                    width: 300,
+                    borderRadius: 10,
+                    ...getShadow(2),
+                  }}>
                     <View>
-                      <Text>{item.activity_name}</Text>
-                    </View>
-                    <View>
-                      <Text> $ {item.price}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.time}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.type}</Text>
-                    </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.activity_name}</Text>
                   </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}> $ {item.price}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.time}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.type}</Text>
+                  </View>
+                  </View>
+                 
+                </View>
                 ))}
           </View>
-
+          <View style={{marginVertical:10, marginLeft:20}}>
+            <Text style={{fontSize:18}}>Wednesday</Text>
+          </View>
           <View>
               {data3 &&
                 data3.map(item => (
                   <View
-                    key={Math.random()}
-                    style={{
-                      backgroundColor: 'white',
-                      padding: 10,
-                      margin: 10,
-                      width: 240,
-                      borderRadius: 10,
-                      ...getShadow(2),
-                    }}>
+                  key={Math.random()}
+                  style={{
+                    backgroundColor: 'white',
+                    padding: 10,
+                    margin: 10,
+                    width: 300,
+                    borderRadius: 10,
+                    ...getShadow(2),
+                  }}>
                     <View>
-                      <Text>{item.activity_name}</Text>
-                    </View>
-                    <View>
-                      <Text> $ {item.price}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.time}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.type}</Text>
-                    </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.activity_name}</Text>
                   </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}> $ {item.price}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.time}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.type}</Text>
+                  </View>
+                  </View>
+                 
+                </View>
                 ))}
           </View>
-          
+          <View style={{marginVertical:10, marginLeft:20}}>
+            <Text style={{fontSize:18}}>Thursday</Text>
+          </View>
           <View>
               {data4 &&
                 data4.map(item => (
@@ -183,51 +201,61 @@ const TripDetails = ({navigation}) => {
                       backgroundColor: 'white',
                       padding: 10,
                       margin: 10,
-                      width: 240,
+                      width: 300,
                       borderRadius: 10,
                       ...getShadow(2),
                     }}>
-                    <View>
-                      <Text>{item.activity_name}</Text>
+                      <View>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.activity_name}</Text>
                     </View>
-                    <View>
-                      <Text> $ {item.price}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}> $ {item.price}</Text>
                     </View>
-                    <View>
-                      <Text>{item.time}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.time}</Text>
                     </View>
-                    <View>
-                      <Text>{item.type}</Text>
+                    <View style={{marginVertical:2}}>
+                      <Text style={{fontSize:17}}>{item.type}</Text>
                     </View>
+                    </View>
+                   
                   </View>
                 ))}
+          </View>
+
+          <View style={{marginVertical:10, marginLeft:20}}>
+            <Text style={{fontSize:18}}>Friday</Text>
           </View>
           <View>
               {data5 &&
                 data5.map(item => (
                   <View
-                    key={Math.random()}
-                    style={{
-                      backgroundColor: 'white',
-                      padding: 10,
-                      margin: 10,
-                      width: 240,
-                      borderRadius: 10,
-                      ...getShadow(2),
-                    }}>
+                  key={Math.random()}
+                  style={{
+                    backgroundColor: 'white',
+                    padding: 10,
+                    margin: 10,
+                    width: 300,
+                    borderRadius: 10,
+                    ...getShadow(2),
+                  }}>
                     <View>
-                      <Text>{item.activity_name}</Text>
-                    </View>
-                    <View>
-                      <Text> $ {item.price}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.time}</Text>
-                    </View>
-                    <View>
-                      <Text>{item.type}</Text>
-                    </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.activity_name}</Text>
                   </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}> $ {item.price}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.time}</Text>
+                  </View>
+                  <View style={{marginVertical:2}}>
+                    <Text style={{fontSize:17}}>{item.type}</Text>
+                  </View>
+                  </View>
+                 
+                </View>
                 ))}
           </View>
         </View>

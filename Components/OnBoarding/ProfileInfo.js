@@ -59,19 +59,19 @@ const ProfileInfo = ({navigation}) => {
   };
 
   const checkNavigate = async () => {
-    // if (firstName && lastName && phoneNumber && age) {
-    //   await firestore().collection('profile').add({
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     phoneNumber: phoneNumber,
-    //     age: age,
-    //   });
-    //   storeData(firstName, lastName, phoneNumber, age)
+    if (firstName && lastName && phoneNumber && age) {
+      await firestore().collection('profile').add({
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        age: age,
+      });
+      storeData(firstName, lastName, phoneNumber, age)
       navigation.navigate('PreferredActivities');
-    // } else {
-    //   alert('Fill All Fields');
+    } else {
+      alert('Fill All Fields');
      
-    // }
+    }
   };
 
   return (

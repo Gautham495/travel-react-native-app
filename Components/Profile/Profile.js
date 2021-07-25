@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getShadow } from '../../utils/Shadow';
 
 const Profile = ({navigation}) => {
   const [age, setAge] = useState(null);
@@ -30,11 +31,38 @@ const Profile = ({navigation}) => {
       // error reading value
     }
   };
-  useEffect(()=>{
-      getData()
-  },[])
+  useEffect(() => {
+    getData();
+  }, []);
 
-  return <View></View>;
+  return (
+    <View style={{alignItems: 'center'}}>
+      {firstName && (
+        <View style={{marginTop: 150, padding:20, ...getShadow(1),borderRadius:10, width:250}}>
+          <View style={{alignItems:'center', marginVertical:20}}>
+            <Text style={{fontSize:21}}>Profile Info </Text>
+          </View>
+          <View style={{marginVertical: 10}}>
+            <Text style={{fontSize:20}}>First Name : {firstName}</Text>
+          </View>
+          <View style={{marginVertical: 10}}>
+            <Text style={{fontSize:20}}>Last Name : {lastName}</Text>
+          </View>
+          <View style={{marginVertical: 10}}>
+            <Text style={{fontSize:20}}>Phone Number : {phoneNumber}</Text>
+          </View>
+          <View style={{marginVertical: 10}}>
+            <Text style={{fontSize:20}}>Age : {age}</Text>
+          </View>
+        </View>
+      )}
+      {!age && (
+        <View style={{marginTop: 200, padding:20, ...getShadow(1),borderRadius:10, width:250}}>
+          <Text style={{fontSize:20}}>Fill Out the Profile Info to Get your Information here</Text>
+        </View>
+      )}
+    </View>
+  );
 };
 
 export default Profile;

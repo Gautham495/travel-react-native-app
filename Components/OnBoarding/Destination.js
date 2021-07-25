@@ -9,22 +9,10 @@ import {
 } from 'react-native';
 
 const Destination = ({navigation}) => {
-  const [destinations, setDestinations] = useState([
-    {name: 'Jesper', location: 'Canada', url: ''},
-  ]);
-
+  
   return (
     <View style={{alignItems: 'center',marginTop:50}}>
-      {destinations.map(item => (
-        <TouchableOpacity>
-          <View>
-            <Text>
-              {item.name}
-              {item.location}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
+     
       <View>
         <TouchableOpacity
           style={{

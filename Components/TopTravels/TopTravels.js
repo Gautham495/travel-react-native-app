@@ -18,7 +18,7 @@ const TopTravels = ({navigation}) => {
 
   const getTopTripsData = async () => {
     const topTrips = await firestore().collection('toptrips').get();
-    console.log(topTrips.docs.map(item => item.data()));
+    // console.log(topTrips.docs.map(item => item.data()));
 
     setTopTripsData(topTrips.docs.map(item => item.data()));
   };
@@ -33,17 +33,22 @@ const TopTravels = ({navigation}) => {
         <View style={{margin: 10}}>
           {topTripsData.map(item => (
             <TouchableOpacity
-            onPress={()=>navigation.navigate('TripDetails')}
+              onPress={() => navigation.navigate('TripDetails')}
               key={Math.random()}
               style={{
                 borderRadius: 1,
                 ...getShadow(1),
                 margin: 10,
                 padding: 10,
-                alignItems:'center'
+                alignItems: 'center',
+                backgroundColor: 'white',
               }}>
-              <Text>{item.location}</Text>
-              <Text>{item.name}</Text>
+              <View style={{marginVertical:5}}>
+                <Text style={{fontSize:18}}>{item.location}</Text>
+              </View>
+              <View style={{marginVertical:5}}>
+                <Text style={{fontSize:18}}>{item.name}</Text>
+              </View>
             </TouchableOpacity>
           ))}
         </View>
