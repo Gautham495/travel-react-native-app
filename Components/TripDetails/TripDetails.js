@@ -10,17 +10,10 @@ import {
 } from 'react-native';
 import {getShadow} from '../../utils/Shadow.js';
 import firestore from '@react-native-firebase/firestore';
-import { List } from 'react-native-paper';
-
-const data = [
-  {day: 'Monday', name: '1', details: ''},
-  {name: '2'},
-  {name: '3'},
-];
+import {List} from 'react-native-paper';
+import {data1, data2, data3, data4, data5} from './Data';
 
 const TripDetails = ({navigation}) => {
-
-
   const [expandedOne, setExpandedOne] = React.useState(true);
   const [expandedTwo, setExpandedTwo] = React.useState(true);
   const [expandedThree, setExpandedThree] = React.useState(true);
@@ -33,21 +26,33 @@ const TripDetails = ({navigation}) => {
 
   const [tripDetailsData, setTripDetailsData] = useState([]);
 
-  const[ids,setIds] = useState([])
-
+  const [ids, setIds] = useState([]);
+  const [indexes] = useState([0, 1, 2, 3, 4]);
   const getTripDetailsData = async () => {
-
-    firestore().collection("itinerary ").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
+    firestore()
+      .collection('itinerary ')
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
           console.log(`${doc.id}`);
-          ids.push(doc.id)
-      })});
-  
+          ids.push(doc.id);
+        });
+      });
 
-    const tripDetails = await firestore().collection("itinerary ").get();
-    // console.log(tripDetails.docs);
+    const tripDetails = await firestore().collection('itinerary ').get();
 
-    setTripDetailsData(tripDetails.docs.map(item => item.data()));
+    const l = tripDetails.docs
+      .map(item => item.data().schedule)
+      .filter(item => item);
+
+    const temp = [];
+
+    for (var i = 0; i < l.length; i++) {
+      console.log(l.map(item => item)[i].map(item => item));
+    }
+    setTripDetailsData(l);
+
+    setTripDetailsData;
   };
 
   useEffect(() => {
@@ -56,40 +61,176 @@ const TripDetails = ({navigation}) => {
 
   return (
     <ScrollView>
-       <List.Accordion
+      {/* <List.Accordion
         title="Monday"
-        // left={props => <List.Icon {...props} icon="folder" />}
         expanded={expanded}
         onPress={handlePress}>
-        <List.Item title="First item" description="lol"  left={props => <List.Icon {...props} icon="folder" />} />
-        <List.Item title="Second item" description="lol"  left={props => <List.Icon {...props} icon="folder" />} />
-      
-      </List.Accordion>
+        <List.Item
+          title="First item"
+          description="lol"
+          left={props => <List.Icon {...props} icon="folder" />}
+        />
+        <List.Item
+          title="Second item"
+          description="lol"
+          left={props => <List.Icon {...props} icon="folder" />}
+        />
+      </List.Accordion> */}
 
       <View style={{alignItems: 'center', marginTop: 50}}>
-        <View style={{marginBottom: 50}}>
+        <View style={{marginBottom: 30}}>
           <Text style={{fontSize: 20}}>Your 5 Day Trip Details</Text>
         </View>
-        <View>
-          {data.map(item => (
-            <TouchableOpacity
-              style={{
-                width: 300,
-                backgroundColor: 'white',
-                ...getShadow(2),
-                borderRadius: 5,
-                padding: 5,
-                height: 200,
-                alignItems: 'center',
-                margin:10
-              }}
-              key={Math.random()}>
-              <Text>{item.name}</Text>
-            </TouchableOpacity>
-          ))}
+        <View style={{marginBottom: 30}}>
+          <Text style={{fontSize: 20}}>03-08-2021 to 9-08-2021</Text>
         </View>
+        <View>
+          <View>
+              {data1 &&
+                data1.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 240,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                    }}>
+                    <View>
+                      <Text>{item.activity_name}</Text>
+                    </View>
+                    <View>
+                      <Text> $ {item.price}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.time}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.type}</Text>
+                    </View>
+                  </View>
+                ))}
+          </View>
 
-     
+         
+
+          <View>
+              {data2 &&
+                data2.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 240,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                    }}>
+                    <View>
+                      <Text>{item.activity_name}</Text>
+                    </View>
+                    <View>
+                      <Text> $ {item.price}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.time}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.type}</Text>
+                    </View>
+                  </View>
+                ))}
+          </View>
+
+          <View>
+              {data3 &&
+                data3.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 240,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                    }}>
+                    <View>
+                      <Text>{item.activity_name}</Text>
+                    </View>
+                    <View>
+                      <Text> $ {item.price}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.time}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.type}</Text>
+                    </View>
+                  </View>
+                ))}
+          </View>
+          
+          <View>
+              {data4 &&
+                data4.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 240,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                    }}>
+                    <View>
+                      <Text>{item.activity_name}</Text>
+                    </View>
+                    <View>
+                      <Text> $ {item.price}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.time}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.type}</Text>
+                    </View>
+                  </View>
+                ))}
+          </View>
+          <View>
+              {data5 &&
+                data5.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 240,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                    }}>
+                    <View>
+                      <Text>{item.activity_name}</Text>
+                    </View>
+                    <View>
+                      <Text> $ {item.price}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.time}</Text>
+                    </View>
+                    <View>
+                      <Text>{item.type}</Text>
+                    </View>
+                  </View>
+                ))}
+          </View>
+        </View>
       </View>
     </ScrollView>
   );

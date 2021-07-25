@@ -18,17 +18,25 @@ const PreferredActivities = ({navigation}) => {
 
   const [interest, setInterest] = useState(null);
   const [preferredActivities, setPreferredActivities] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
 
-  const onChangeEnd = (event, selectedDate) => {
+
+  const onChangeStart = (event, selectedDate) => {
     // setStartDate(dayjs(selectedDate).format('DD-MM-YYYY'));
-    setDate(selectedDate);
-    setEndDate(selectedDate.toLocaleDateString());
+    setStartDate(selectedDate.toLocaleDateString());
+
+    setShow(false);
   };
+
+ 
+
   const showMode = currentMode => {
     setShow(true);
 
+    setMode(currentMode);
   };
+
+ 
 
   const showDatepicker = () => {
     showMode('date');
@@ -47,12 +55,20 @@ const PreferredActivities = ({navigation}) => {
           placeholder="Personal Interests"
         />
       </View>
+      <View>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => setPreferredActivities(e)}
+          value={preferredActivities}
+          placeholder="Preferred Activities"
+        />
+      </View>
       <View style={{marginTop: 10}}>
         <TouchableOpacity
           style={[styles.input, {alignItems: 'center', height: 50}]}
           onPress={showDatepicker}>
           <Text style={{marginTop: 10}}>
-            {endDate ? <Text>{endDate}</Text> : <Text>End Date</Text>}
+            {startDate ? <Text>{startDate}</Text> : <Text>Trip End Date</Text>}
           </Text>
         </TouchableOpacity>
       </View>
@@ -63,17 +79,10 @@ const PreferredActivities = ({navigation}) => {
           mode={mode}
           is24Hour={true}
           display="default"
-          onChange={onChangeEnd}
+          onChange={onChangeStart}
         />
       )}
-      <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={e => setPreferredActivities(e)}
-          value={preferredActivities}
-          placeholder="Preferred Activities"
-        />
-      </View>
+      
       <View>
         <TouchableOpacity
           style={{

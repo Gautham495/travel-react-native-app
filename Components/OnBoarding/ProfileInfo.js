@@ -10,6 +10,8 @@ import {
 import {getShadow} from '../../utils/Shadow.js';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import dayjs from 'dayjs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
 
 const ProfileInfo = ({navigation}) => {
   const [mode, setMode] = useState('date');
@@ -18,22 +20,22 @@ const ProfileInfo = ({navigation}) => {
   const [date, setDate] = useState(new Date());
 
   const [age, setAge] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+
   const [travellers, setTravellers] = useState(null);
 
   const [startDate, setStartDate] = useState(null);
 
   const [budget, setBudget] = useState(null);
- 
 
   const onChangeStart = (event, selectedDate) => {
     // setStartDate(dayjs(selectedDate).format('DD-MM-YYYY'));
     setStartDate(selectedDate.toLocaleDateString());
-    setDate(selectedDate);
 
     setShow(false);
   };
-
- 
 
   const showMode = currentMode => {
     setShow(true);
@@ -41,12 +43,37 @@ const ProfileInfo = ({navigation}) => {
     setMode(currentMode);
   };
 
- 
-
   const showDatepicker = () => {
     showMode('date');
   };
-  
+
+  const storeData = async (firstName, lastName, phoneNumber, age) => {
+    try {
+      await AsyncStorage.setItem('firstName', firstName);
+      await AsyncStorage.setItem('lastName', lastName);
+      await AsyncStorage.setItem('phoneNumber', phoneNumber);
+      await AsyncStorage.setItem('age', age);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const checkNavigate = async () => {
+    // if (firstName && lastName && phoneNumber && age) {
+    //   await firestore().collection('profile').add({
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     phoneNumber: phoneNumber,
+    //     age: age,
+    //   });
+    //   storeData(firstName, lastName, phoneNumber, age)
+      navigation.navigate('PreferredActivities');
+    // } else {
+    //   alert('Fill All Fields');
+     
+    // }
+  };
+
   return (
     <View style={{alignItems: 'center', marginTop: 120}}>
       <View style={{alignItems: 'center', marginBottom: 20}}>
@@ -64,9 +91,26 @@ const ProfileInfo = ({navigation}) => {
       <View>
         <TextInput
           style={styles.input}
-          onChangeText={e => setTravellers(e)}
-          value={travellers}
-          placeholder="No of Travellers"
+          onChangeText={e => setFirstName(e)}
+          value={firstName}
+          placeholder="First Name"
+        />
+      </View>
+      <View>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => setLastName(e)}
+          value={lastName}
+          placeholder="Last Name"
+        />
+      </View>
+
+      <View>
+        <TextInput
+          style={styles.input}
+          onChangeText={e => setPhoneNumber(e)}
+          value={phoneNumber}
+          placeholder="Phone Number"
           keyboardType="numeric"
         />
       </View>
@@ -76,7 +120,11 @@ const ProfileInfo = ({navigation}) => {
           style={[styles.input, {alignItems: 'center'}]}
           onPress={showDatepicker}>
           <Text style={{marginTop: 10}}>
-            {startDate ? <Text>{startDate}</Text> : <Text>Start Date</Text>}
+            {startDate ? (
+              <Text>{startDate}</Text>
+            ) : (
+              <Text>Trip Start Date</Text>
+            )}
           </Text>
         </TouchableOpacity>
       </View>
@@ -92,16 +140,6 @@ const ProfileInfo = ({navigation}) => {
       )}
 
       <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={e => setBudget(e)}
-          value={budget}
-          placeholder="Budget"
-          keyboardType="numeric"
-        />
-      </View>
-
-      <View>
         <TouchableOpacity
           style={{
             backgroundColor: 'blue',
@@ -111,7 +149,7 @@ const ProfileInfo = ({navigation}) => {
             width: 250,
             alignItems: 'center',
           }}
-          onPress={() => navigation.navigate('PreferredActivities')}>
+          onPress={() => checkNavigate()}>
           <Text style={{fontSize: 20, color: 'white'}}> Next</Text>
         </TouchableOpacity>
       </View>
@@ -130,6 +168,8 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 50,
     color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

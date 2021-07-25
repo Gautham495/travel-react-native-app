@@ -42,30 +42,41 @@ const TripCarousel = ({navigation}) => {
         renderCard={card =>
           (card && (
             <View style={styles.card}>
-              <View>
+              <View style={{margin: 20}}>
                 <Image
                   source={{
                     uri: card.img,
                   }}
-                  style={{width: 150, height: 150, marginBottom: 20}}
+                  style={{
+                    width: Dimensions.get('window').width - 50,
+                    height: 250,
+                  }}
                 />
               </View>
-              <View>
-                <View>
-                  <Text>{card.description}</Text>
+              <View style={{alignItems:'center',margin:10}}>
+                  <Text style={{fontSize:18}}>Location : {card.location}</Text>
                 </View>
-                <View>
-                  <Text>{card.location}</Text>
-                </View>
+              <View
+                style={{
+                  margin: 10,
+                  padding: 10,
+                  borderRadius: 10,
+                  ...getShadow(1),
+                }}>
                 <View>
                   <Text>{card.name}</Text>
                 </View>
                 <View>
-                  <Text>{card.price}</Text>
+                  <Text style={{fontWeight: 'bold'}}>
+                    Price : $ {card.price}
+                  </Text>
                 </View>
-                {/* <View>
-                 <Text>$150</Text>
-               </View> */}
+              </View>
+              <View>
+                <View style={{margin: 5}}>
+                  <Text style={{fontSize: 17}}>{card.description}</Text>
+                </View>
+                
               </View>
             </View>
           )) ||
@@ -78,9 +89,9 @@ const TripCarousel = ({navigation}) => {
         // onSwipedLeft = {(e)=>console.log(e)}
         onSwipedRight={cardIndex => {
           setCounter(counter + 1);
-          if (counter > 5) {
+          // if (counter > 1) {
             navigation.navigate('TripDetails');
-          }
+          // }
         }}
         cardIndex={0}
         backgroundColor={'#fff'}
