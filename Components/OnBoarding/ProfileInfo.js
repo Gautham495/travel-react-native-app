@@ -30,22 +30,22 @@ const ProfileInfo = ({navigation}) => {
 
   const [budget, setBudget] = useState(null);
 
-  const onChangeStart = (event, selectedDate) => {
-    // setStartDate(dayjs(selectedDate).format('DD-MM-YYYY'));
-    setStartDate(selectedDate.toLocaleDateString());
+  // const onChangeStart = (event, selectedDate) => {
+  //   // setStartDate(dayjs(selectedDate).format('DD-MM-YYYY'));
+  //   setStartDate(selectedDate.toLocaleDateString());
 
-    setShow(false);
-  };
+  //   setShow(false);
+  // };
 
-  const showMode = currentMode => {
-    setShow(true);
+  // const showMode = currentMode => {
+  //   setShow(true);
 
-    setMode(currentMode);
-  };
+  //   setMode(currentMode);
+  // };
 
-  const showDatepicker = () => {
-    showMode('date');
-  };
+  // const showDatepicker = () => {
+  //   showMode('date');
+  // };
 
   const storeData = async (firstName, lastName, phoneNumber, age) => {
     try {
@@ -59,25 +59,25 @@ const ProfileInfo = ({navigation}) => {
   };
 
   const checkNavigate = async () => {
-    if (firstName && lastName && phoneNumber && age) {
-      await firestore().collection('profile').add({
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-        age: age,
-      });
+    // if (firstName && lastName && phoneNumber && age) {
+    //   await firestore().collection('profile').add({
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     phoneNumber: phoneNumber,
+    //     age: age, 
+    //   });
       storeData(firstName, lastName, phoneNumber, age)
       navigation.navigate('PreferredActivities');
-    } else {
-      alert('Fill All Fields');
+    // } else {
+    //   alert('Fill All Fields');
      
-    }
+    // }
   };
 
   return (
     <View style={{alignItems: 'center', marginTop: 120}}>
       <View style={{alignItems: 'center', marginBottom: 20}}>
-        <Text style={{fontSize: 18}}>Tell Us About Yourself!</Text>
+        <Text style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>Tell Us About Yourself!</Text>
       </View>
       <View>
         <TextInput
@@ -115,7 +115,7 @@ const ProfileInfo = ({navigation}) => {
         />
       </View>
 
-      <View style={{marginTop: 10}}>
+      {/* <View style={{marginTop: 10}}>
         <TouchableOpacity
           style={[styles.input, {alignItems: 'center'}]}
           onPress={showDatepicker}>
@@ -137,20 +137,20 @@ const ProfileInfo = ({navigation}) => {
           display="default"
           onChange={onChangeStart}
         />
-      )}
+      )} */}
 
       <View>
         <TouchableOpacity
           style={{
             backgroundColor: 'blue',
-            padding: 20,
+            padding: 10,
             borderRadius: 100,
             margin: 10,
             width: 250,
             alignItems: 'center',
           }}
           onPress={() => checkNavigate()}>
-          <Text style={{fontSize: 20, color: 'white'}}> Next</Text>
+          <Text style={{fontSize: 20, color: 'white', fontFamily: 'Poppins-Medium'}}> Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -160,16 +160,16 @@ const ProfileInfo = ({navigation}) => {
 const styles = StyleSheet.create({
   input: {
     margin: 12,
-    // borderWidth: 1,
+    // borderWidth: 0.1,
     width: 250,
     backgroundColor: 'white',
-    ...getShadow(2),
-    borderRadius: 5,
+    ...getShadow(1),
+    borderRadius: 10,
     padding: 5,
     height: 50,
     color: 'black',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Medium'
   },
 });
 

@@ -11,7 +11,6 @@ import DiamondIcon from './Assets/diamondIcon.svg';
 
 import Login from './Components/Login/Login';
 import Destination from './Components/OnBoarding/Destination';
-import PersonalInterest from './Components/OnBoarding/PersonalInterest';
 import PreferredActivities from './Components/OnBoarding/PreferredActivities';
 import ProfileInfo from './Components/OnBoarding/ProfileInfo';
 import SearchDestination from './Components/OnBoarding/SearchDestination';
@@ -35,7 +34,6 @@ function PrimaryStack() {
       />
       <Stack.Screen name="Destination" component={Destination} />
 
-      <Stack.Screen name="PersonalInterest" component={PersonalInterest} />
       <Stack.Screen
         name="PreferredActivities"
         component={PreferredActivities}

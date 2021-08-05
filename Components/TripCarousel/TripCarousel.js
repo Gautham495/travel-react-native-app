@@ -53,9 +53,11 @@ const TripCarousel = ({navigation}) => {
                   }}
                 />
               </View>
-              <View style={{alignItems:'center',margin:10}}>
-                  <Text style={{fontSize:18}}>Location : {card.location}</Text>
-                </View>
+              <View style={{alignItems: 'center', margin: 10}}>
+                <Text style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
+                  Location : {card.location}
+                </Text>
+              </View>
               <View
                 style={{
                   margin: 10,
@@ -64,19 +66,22 @@ const TripCarousel = ({navigation}) => {
                   ...getShadow(1),
                 }}>
                 <View>
-                  <Text>{card.name}</Text>
+                  <Text style={{fontFamily: 'Poppins-Medium'}}>
+                    {card.name}
+                  </Text>
                 </View>
                 <View>
-                  <Text style={{fontWeight: 'bold'}}>
+                  <Text style={{fontFamily: 'Poppins-Medium'}}>
                     Price : $ {card.price}
                   </Text>
                 </View>
               </View>
               <View>
                 <View style={{margin: 5}}>
-                  <Text style={{fontSize: 17}}>{card.description}</Text>
+                  <Text style={{fontSize: 16, fontFamily: 'Poppins-Medium'}}>
+                    {card.description}
+                  </Text>
                 </View>
-                
               </View>
             </View>
           )) ||

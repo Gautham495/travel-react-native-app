@@ -43,11 +43,15 @@ const TopTravels = ({navigation}) => {
                 alignItems: 'center',
                 backgroundColor: 'white',
               }}>
-              <View style={{marginVertical:5}}>
-                <Text style={{fontSize:18}}>{item.location}</Text>
+              <View style={{marginVertical: 5}}>
+                <Text style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
+                  {item.location}
+                </Text>
               </View>
-              <View style={{marginVertical:5}}>
-                <Text style={{fontSize:18}}>{item.name}</Text>
+              <View style={{marginVertical: 5}}>
+                <Text style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
+                  {item.name}
+                </Text>
               </View>
             </TouchableOpacity>
           ))}
