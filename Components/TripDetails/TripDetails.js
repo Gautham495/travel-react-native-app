@@ -35,7 +35,7 @@ const TripDetails = ({navigation}) => {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          // console.log(`${doc.id}`);
+          console.log(doc.data());
           ids.push(doc.id);
         });
       });
@@ -45,6 +45,8 @@ const TripDetails = ({navigation}) => {
     const l = tripDetails.docs
       .map(item => item.data().schedule)
       .filter(item => item);
+
+    console.log(l);
 
     const temp = [];
 
@@ -91,12 +93,27 @@ const TripDetails = ({navigation}) => {
           </Text>
         </View>
         <View>
-          <View style={{marginVertical: 10, marginLeft: 20, alignItems:'center'}}>
-            <Text
-              onPress={() => setExpandedOne(!expandedOne)}
-              style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
-              Monday
-            </Text>
+          <View
+            style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 100,
+                margin: 10,
+                width: 250,
+                alignItems: 'center',
+              }}
+              onPress={() => setExpandedOne(!expandedOne)}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: 'Poppins-Medium',
+                  color: 'white',
+                }}>
+                Monday
+              </Text>
+            </TouchableOpacity>
           </View>
           <Collapsible collapsed={expandedOne}>
             <View>
@@ -142,8 +159,8 @@ const TripDetails = ({navigation}) => {
                     </View>
                     <View>
                       <Image
-                        source={require('../../Assets/swimming.png')}
-                        style={{width: 75, height: 75}}
+                        source={{uri: item.img_url}}
+                        style={{width: 75, height: 75, marginTop:20}}
                       />
                     </View>
                   </View>
@@ -151,187 +168,258 @@ const TripDetails = ({navigation}) => {
             </View>
           </Collapsible>
 
-          <View style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
-             
-            <Text  onPress={() => setExpandedTwo(!expandedTwo)} style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
-              Tuesday
-            </Text>
+          <View
+            style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 100,
+                margin: 10,
+                width: 250,
+                alignItems: 'center',
+              }}
+              onPress={() => setExpandedTwo(!expandedTwo)}
+              
+              >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontFamily: 'Poppins-Medium',
+                }}>
+                Tuesday
+              </Text>
+            </TouchableOpacity>
           </View>
           <Collapsible collapsed={expandedTwo}>
-          <View>
-            {data2 &&
-              data2.map(item => (
-                <View
-                  key={Math.random()}
-                  style={{
-                    backgroundColor: 'white',
-                    padding: 10,
-                    margin: 10,
-                    width: 300,
-                    borderRadius: 10,
-                    ...getShadow(2),
-                    flexDirection: 'row',
-                  }}>
-                  <View style={{width: '60%', alignItems: 'center'}}>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+            <View>
+              {data2 &&
+                data2.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 300,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                      flexDirection: 'row',
+                    }}>
+                    <View style={{width: '60%', alignItems: 'center'}}>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}> $ {item.price}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.time}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.type}</Text>
+                      </View>
                     </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}> $ {item.price}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.time}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.type}</Text>
+                    <View>
+                      <Image
+                        source={{uri: item.img_url}}
+                        style={{width: 75, height: 75, marginTop:20}}
+                      />
                     </View>
                   </View>
-                  <View>
-                    <Image
-                      source={require('../../Assets/swimming.png')}
-                      style={{width: 75, height: 75}}
-                    />
-                  </View>
-                </View>
-              ))}
-          </View>
+                ))}
+            </View>
           </Collapsible>
-          <View style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
-            <Text  onPress={() => setExpandedThree(!expandedThree)} style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
-              Wednesday
-            </Text>
+          <View
+            style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 100,
+                margin: 10,
+                width: 250,
+                alignItems: 'center',
+              }}
+              onPress={() => setExpandedThree(!expandedThree)}
+              
+              >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontFamily: 'Poppins-Medium',
+                }}>
+                Wednesday
+              </Text>
+            </TouchableOpacity>
           </View>
           <Collapsible collapsed={expandedThree}>
-
-          <View>
-            {data3 &&
-              data3.map(item => (
-                <View
-                  key={Math.random()}
-                  style={{
-                    backgroundColor: 'white',
-                    padding: 10,
-                    margin: 10,
-                    width: 300,
-                    borderRadius: 10,
-                    ...getShadow(2),
-                    flexDirection: 'row',
-                  }}>
-                  <View style={{width: '60%', alignItems: 'center'}}>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+            <View>
+              {data3 &&
+                data3.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 300,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                      flexDirection: 'row',
+                    }}>
+                    <View style={{width: '60%', alignItems: 'center'}}>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}> $ {item.price}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.time}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.type}</Text>
+                      </View>
                     </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}> $ {item.price}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.time}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.type}</Text>
+                    <View>
+                      <Image
+                        source={{uri: item.img_url}}
+                        style={{width: 75, height: 75, marginTop:20}}
+                      />
                     </View>
                   </View>
-                  <View>
-                    <Image
-                      source={require('../../Assets/swimming.png')}
-                      style={{width: 75, height: 75}}
-                    />
-                  </View>
-                </View>
-              ))}
-              
-          </View>
+                ))}
+            </View>
           </Collapsible>
-          <View style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
-            <Text  onPress={() => setExpandedFour(!expandedFour)} style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
-              Thursday
-            </Text>
+          <View
+            style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 100,
+                margin: 10,
+                width: 250,
+                alignItems: 'center',
+              }}
+              onPress={() => setExpandedFour(!expandedFour)}
+              
+              >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontFamily: 'Poppins-Medium',
+                }}>
+                Thursday
+              </Text>
+            </TouchableOpacity>
           </View>
           <Collapsible collapsed={expandedFour}>
-
-          <View>
-            {data4 &&
-              data4.map(item => (
-                <View
-                  key={Math.random()}
-                  style={{
-                    backgroundColor: 'white',
-                    padding: 10,
-                    margin: 10,
-                    width: 300,
-                    borderRadius: 10,
-                    ...getShadow(2),
-                    flexDirection: 'row',
-                  }}>
-                  <View style={{width: '60%', alignItems: 'center'}}>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+            <View>
+              {data4 &&
+                data4.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 300,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                      flexDirection: 'row',
+                    }}>
+                    <View style={{width: '60%', alignItems: 'center'}}>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}> $ {item.price}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.time}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.type}</Text>
+                      </View>
                     </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}> $ {item.price}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.time}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.type}</Text>
+                    <View>
+                      <Image
+                        source={{uri: item.img_url}}
+                        style={{width: 75, height: 75, marginTop:20}}
+                      />
                     </View>
                   </View>
-                  <View>
-                    <Image
-                      source={require('../../Assets/swimming.png')}
-                      style={{width: 75, height: 75}}
-                    />
-                  </View>
-                </View>
-              ))}
-          </View>
+                ))}
+            </View>
           </Collapsible>
 
-          <View style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
-            <Text  onPress={() => setExpandedFive(!expandedFive)} style={{fontSize: 18, fontFamily: 'Poppins-Medium'}}>
-              Friday
-            </Text>
+          <View
+            style={{marginVertical: 10, marginLeft: 20, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'blue',
+                padding: 10,
+                borderRadius: 100,
+                margin: 10,
+                width: 250,
+                alignItems: 'center',
+              }}
+              onPress={() => setExpandedFive(!expandedFive)}
+              
+              >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontFamily: 'Poppins-Medium',
+                }}>
+                Friday
+              </Text>
+            </TouchableOpacity>
           </View>
           <Collapsible collapsed={expandedFive}>
-
-          <View>
-            {data5 &&
-              data5.map(item => (
-                <View
-                  key={Math.random()}
-                  style={{
-                    backgroundColor: 'white',
-                    padding: 10,
-                    margin: 10,
-                    width: 300,
-                    borderRadius: 10,
-                    ...getShadow(2),
-                    flexDirection: 'row',
-                  }}>
-                  <View style={{width: '60%', alignItems: 'center'}}>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+            <View>
+              {data5 &&
+                data5.map(item => (
+                  <View
+                    key={Math.random()}
+                    style={{
+                      backgroundColor: 'white',
+                      padding: 10,
+                      margin: 10,
+                      width: 300,
+                      borderRadius: 10,
+                      ...getShadow(2),
+                      flexDirection: 'row',
+                    }}>
+                    <View style={{width: '60%', alignItems: 'center'}}>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.activity_name}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}> $ {item.price}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.time}</Text>
+                      </View>
+                      <View style={{marginVertical: 2}}>
+                        <Text style={{fontSize: 17}}>{item.type}</Text>
+                      </View>
                     </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}> $ {item.price}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.time}</Text>
-                    </View>
-                    <View style={{marginVertical: 2}}>
-                      <Text style={{fontSize: 17}}>{item.type}</Text>
+                    <View>
+                      <Image
+                        source={{uri: item.img_url}}
+                        style={{width: 75, height: 75, marginTop: 30}}
+                      />
                     </View>
                   </View>
-                  <View>
-                    <Image
-                      source={require('../../Assets/swimming.png')}
-                      style={{width: 75, height: 75, marginTop: 30}}
-                    />
-                  </View>
-                </View>
-              ))}
-          </View>
+                ))}
+            </View>
           </Collapsible>
         </View>
       </View>
