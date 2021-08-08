@@ -91,7 +91,7 @@ const TripCarousel = ({navigation}) => {
         onSwipedAll={() => {
           alert('onSwipedAll');
         }}
-        // onSwipedLeft = {(e)=>console.log(e)}
+        // onSwipedLeft = {(e)=>console.log()}
         onSwipedRight={cardIndex => {
           setCounter(counter + 1);
           if (counter > 4) {
