@@ -1,22 +1,16 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
-  TextInput,
   Text,
   StyleSheet,
   Dimensions,
-  TouchableOpacity,
-  Button,
   Image,
 } from 'react-native';
 import {getShadow} from '../../utils/Shadow.js';
 import Swiper from 'react-native-deck-swiper';
-import {Card, IconButton, OverlayLabel} from '../Component';
+import {OverlayLabel} from '../Component';
 import firestore from '@react-native-firebase/firestore';
 
-const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
-const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 10) / 4);
 
 const TripCarousel = ({navigation}) => {
   const [descriptionData, setDescriptionData] = useState([]);
@@ -37,7 +31,6 @@ const TripCarousel = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Swiper
-        // cards={['Hiking', 'Snowing', 'swimming', 'MAKES', 'YOU', 'HAPPY']}
         cards={descriptionData}
         renderCard={card =>
           (card && (
@@ -87,11 +80,9 @@ const TripCarousel = ({navigation}) => {
           )) ||
           null
         }
-        // onSwiped={(cardIndex) => {console.log(cardIndex)}}
         onSwipedAll={() => {
           alert('onSwipedAll');
         }}
-        // onSwipedLeft = {(e)=>console.log()}
         onSwipedRight={cardIndex => {
           setCounter(counter + 1);
           if (counter > 4) {

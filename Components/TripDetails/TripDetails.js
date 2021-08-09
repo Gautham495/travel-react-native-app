@@ -1,29 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {
   View,
-  TextInput,
   Text,
-  StyleSheet,
   TouchableOpacity,
   Image,
   ScrollView,
 } from 'react-native';
 import {getShadow} from '../../utils/Shadow.js';
 import firestore from '@react-native-firebase/firestore';
-import {List} from 'react-native-paper';
 import {data1, data2, data3, data4, data5} from './Data';
 import Collapsible from 'react-native-collapsible';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const TripDetails = ({navigation}) => {
+const TripDetails = () => {
   const [expandedOne, setExpandedOne] = React.useState(false);
   const [expandedTwo, setExpandedTwo] = React.useState(true);
   const [expandedThree, setExpandedThree] = React.useState(true);
   const [expandedFour, setExpandedFour] = React.useState(true);
   const [expandedFive, setExpandedFive] = React.useState(true);
-
-  const [expanded, setExpanded] = React.useState(true);
-
-  const handlePress = () => setExpanded(!expanded);
 
   const [tripDetailsData, setTripDetailsData] = useState([]);
 
@@ -46,13 +40,6 @@ const TripDetails = ({navigation}) => {
       .map(item => item.data().schedule)
       .filter(item => item);
 
-    console.log(l);
-
-    const temp = [];
-
-    // for (var i = 0; i < l.length; i++) {
-    //   console.log(l.map(item => item)[i].map(item => item));
-    // }
     setTripDetailsData(l);
 
     setTripDetailsData;
@@ -62,25 +49,8 @@ const TripDetails = ({navigation}) => {
     getTripDetailsData();
   }, []);
 
-  const convertTo = hours => {
-    var suffix = hours >= 12 ? 'PM' : 'AM';
-    var hour = ((hours + 11) % 12) + 1 + suffix;
-    return hour;
-  };
-
   return (
     <ScrollView>
-      {/* <List.Accordion title="Monday" expanded={expanded} onPress={handlePress}>
-        {data1 &&
-          data1.map(item => (
-            <List.Item
-              title={item.activity}
-              description={item.activity}
-              left={props => <List.Icon {...props} icon="folder" />}
-            />
-          ))}
-      </List.Accordion> */}
-
       <View style={{alignItems: 'center', marginTop: 50}}>
         <View style={{marginBottom: 30}}>
           <Text style={{fontSize: 20, fontFamily: 'Poppins-Medium'}}>
@@ -111,7 +81,12 @@ const TripDetails = ({navigation}) => {
                   fontFamily: 'Poppins-Medium',
                   color: 'white',
                 }}>
-                Monday
+                Monday{' '}
+                <MaterialIcons
+                  color={'white'}
+                  size={20}
+                  name="arrow-collapse-down"
+                />
               </Text>
             </TouchableOpacity>
           </View>
@@ -160,7 +135,7 @@ const TripDetails = ({navigation}) => {
                     <View>
                       <Image
                         source={{uri: item.img_url}}
-                        style={{width: 75, height: 75, marginTop:20}}
+                        style={{width: 75, height: 75, marginTop: 20}}
                       />
                     </View>
                   </View>
@@ -179,16 +154,19 @@ const TripDetails = ({navigation}) => {
                 width: 250,
                 alignItems: 'center',
               }}
-              onPress={() => setExpandedTwo(!expandedTwo)}
-              
-              >
+              onPress={() => setExpandedTwo(!expandedTwo)}>
               <Text
                 style={{
                   color: 'white',
                   fontSize: 18,
                   fontFamily: 'Poppins-Medium',
                 }}>
-                Tuesday
+                Tuesday{' '}
+                <MaterialIcons
+                  color={'white'}
+                  size={20}
+                  name="arrow-collapse-down"
+                />
               </Text>
             </TouchableOpacity>
           </View>
@@ -224,7 +202,7 @@ const TripDetails = ({navigation}) => {
                     <View>
                       <Image
                         source={{uri: item.img_url}}
-                        style={{width: 75, height: 75, marginTop:20}}
+                        style={{width: 75, height: 75, marginTop: 20}}
                       />
                     </View>
                   </View>
@@ -242,16 +220,21 @@ const TripDetails = ({navigation}) => {
                 width: 250,
                 alignItems: 'center',
               }}
-              onPress={() => setExpandedThree(!expandedThree)}
-              
-              >
+              onPress={() => setExpandedThree(!expandedThree)}>
               <Text
                 style={{
                   color: 'white',
                   fontSize: 18,
                   fontFamily: 'Poppins-Medium',
                 }}>
-                Wednesday
+                Wednesday{' '}
+                
+                
+                <MaterialIcons
+                  color={'white'}
+                  size={20}
+                  name="arrow-collapse-down"
+                />
               </Text>
             </TouchableOpacity>
           </View>
@@ -287,7 +270,7 @@ const TripDetails = ({navigation}) => {
                     <View>
                       <Image
                         source={{uri: item.img_url}}
-                        style={{width: 75, height: 75, marginTop:20}}
+                        style={{width: 75, height: 75, marginTop: 20}}
                       />
                     </View>
                   </View>
@@ -305,16 +288,20 @@ const TripDetails = ({navigation}) => {
                 width: 250,
                 alignItems: 'center',
               }}
-              onPress={() => setExpandedFour(!expandedFour)}
-              
-              >
+              onPress={() => setExpandedFour(!expandedFour)}>
               <Text
                 style={{
                   color: 'white',
                   fontSize: 18,
                   fontFamily: 'Poppins-Medium',
                 }}>
-                Thursday
+                Thursday{' '}
+              
+                <MaterialIcons
+                  color={'white'}
+                  size={20}
+                  name="arrow-collapse-down"
+                />
               </Text>
             </TouchableOpacity>
           </View>
@@ -350,7 +337,7 @@ const TripDetails = ({navigation}) => {
                     <View>
                       <Image
                         source={{uri: item.img_url}}
-                        style={{width: 75, height: 75, marginTop:20}}
+                        style={{width: 75, height: 75, marginTop: 20}}
                       />
                     </View>
                   </View>
@@ -369,9 +356,7 @@ const TripDetails = ({navigation}) => {
                 width: 250,
                 alignItems: 'center',
               }}
-              onPress={() => setExpandedFive(!expandedFive)}
-              
-              >
+              onPress={() => setExpandedFive(!expandedFive)}>
               <Text
                 style={{
                   color: 'white',
@@ -379,6 +364,11 @@ const TripDetails = ({navigation}) => {
                   fontFamily: 'Poppins-Medium',
                 }}>
                 Friday
+                <MaterialIcons
+                  color={'white'}
+                  size={20}
+                  name="arrow-collapse-down"
+                />{' '}
               </Text>
             </TouchableOpacity>
           </View>
